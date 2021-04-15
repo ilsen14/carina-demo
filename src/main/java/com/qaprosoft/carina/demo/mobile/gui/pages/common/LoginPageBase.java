@@ -26,7 +26,11 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isNameInputFieldPresent();
 
+	public abstract boolean isNameTextPrinted(String username);
+
 	public abstract boolean isPasswordInputFieldPresent();
+
+	public abstract boolean isPasswordTextPrinted(String password);
 
 	public abstract boolean isMaleRadioBtnPresent();
 
@@ -38,5 +42,5 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isPrivacyPolicyCheckBoxChecked();
 
-
+	public abstract boolean isLoginPageOpened();
 }

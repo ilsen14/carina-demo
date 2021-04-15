@@ -92,8 +92,8 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome Page is not Opened!");
         LoginPageBase loginPage = welcomePage.clickNextBtn();
+        Assert.assertTrue(loginPage.isLoginPageOpened(), "Page is not opened");
         Assert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
         Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
         Assert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
@@ -101,6 +101,8 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
+        Assert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
+        Assert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
         loginPage.selectMaleSex();
         Assert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");

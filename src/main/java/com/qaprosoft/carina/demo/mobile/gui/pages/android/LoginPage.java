@@ -79,25 +79,53 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         return clickLoginBtn();
     }
 
+    @Override
     public boolean isNameInputFieldPresent() {
         return nameInputField.isPresent();
     }
-    public boolean isPasswordInputFieldPresent(){
+
+    @Override
+    public boolean isNameTextPrinted(String username) {
+        return username.equals(nameInputField.getText());
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
         return passwordInputField.isPresent();
     }
-    public boolean isMaleRadioBtnPresent(){
-        return maleRadioBtn.clickIfPresent();
+
+    @Override
+    public boolean isPasswordTextPrinted(String password) {
+        return password.equals(passwordInputField.getText());
     }
-    public boolean isFemaleRadioBtnPresent(){
+
+    @Override
+    public boolean isMaleRadioBtnPresent() {
+        return maleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isFemaleRadioBtnPresent() {
         return femaleRadioBtn.isPresent();
     }
-    public boolean isPrivacyPolicyCheckBoxPresent(){
+
+    @Override
+    public boolean isPrivacyPolicyCheckBoxPresent() {
         return privacyPolicyCheckbox.isPresent();
     }
-    public boolean isMaleRadioBtnChecked(){
+
+    @Override
+    public boolean isMaleRadioBtnChecked() {
         return maleRadioBtn.isChecked();
     }
-    public boolean isPrivacyPolicyCheckBoxChecked(){
-        return privacyPolicyCheckbox.isChecked();
+
+    @Override
+    public boolean isPrivacyPolicyCheckBoxChecked() {
+        return maleRadioBtn.isChecked();
+    }
+
+    @Override
+    public boolean isLoginPageOpened() {
+        return loginBtn.isElementPresent();
     }
 }

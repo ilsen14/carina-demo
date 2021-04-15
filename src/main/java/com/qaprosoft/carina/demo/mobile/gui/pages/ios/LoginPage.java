@@ -15,6 +15,8 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
 
+	private static final String THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID = "This method is not yet implemented for iOS";
+
 	@FindBy(xpath = "type = 'XCUIElementTypeTextField'")
 	@Predicate
 	private ExtendedWebElement nameInputField;
@@ -85,4 +87,53 @@ public class LoginPage extends LoginPageBase {
 		return clickLoginBtn();
 	}
 
+	@Override
+	public boolean isNameInputFieldPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isNameTextPrinted(String username) {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isPasswordInputFieldPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isPasswordTextPrinted(String password) {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isMaleRadioBtnPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isFemaleRadioBtnPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckBoxPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isMaleRadioBtnChecked() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckBoxChecked() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
+
+	@Override
+	public boolean isLoginPageOpened() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+	}
 }
