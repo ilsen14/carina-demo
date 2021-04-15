@@ -12,7 +12,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBa
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
-public class LoginPage extends LoginPageBase implements IMobileUtils {
+public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
 
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
@@ -32,7 +32,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "login_button")
     private ExtendedWebElement loginBtn;
 
-    public LoginPage(WebDriver driver) {
+    public AndroidLoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -121,7 +121,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public boolean isPrivacyPolicyCheckBoxChecked() {
-        return maleRadioBtn.isChecked();
+        return privacyPolicyCheckbox.isChecked();
     }
 
     @Override

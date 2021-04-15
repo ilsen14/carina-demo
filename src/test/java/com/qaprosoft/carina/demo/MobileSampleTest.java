@@ -16,6 +16,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import org.testng.asserts.SoftAssert;
 
 
 public class MobileSampleTest extends AbstractTest implements IMobileUtils {
@@ -86,30 +87,32 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
     }
 
     @Test(description = "JIRA#DEMO-0011")
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "isenko")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testMyApp(){
+        SoftAssert softAssert = new SoftAssert();
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Page is not opened");
-        Assert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
-        Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
-        Assert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
-        Assert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female Radio Button is not Present");
-        Assert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
+        softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
+        softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
+        softAssert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        Assert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
-        Assert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
+        softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
+        softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
         loginPage.selectMaleSex();
-        Assert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
-        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
+        softAssert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
+        softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
-        Assert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
+        softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
+        softAssert.assertAll();
     }
 
 }
