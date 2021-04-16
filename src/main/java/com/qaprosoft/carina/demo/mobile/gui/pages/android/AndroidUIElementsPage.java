@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
@@ -9,7 +9,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
-public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
+public class AndroidUIElementsPage extends UIElementsPageBase implements IMobileUtils {
 
     @FindBy(id = "editText")
     private ExtendedWebElement textField;
@@ -38,7 +38,7 @@ public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
     @FindBy(className = "android.widget.ScrollView")
     private ExtendedWebElement container;
 
-    public UIElementsPage(WebDriver driver) {
+    public AndroidUIElementsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -70,11 +70,6 @@ public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
     @Override
     public void typeDate(String date) {
         dateField.type(date);
-    }
-
-    @Override
-    public void clickOnMaleRadioButton() {
-        maleRadioButton.click();
     }
 
     @Override

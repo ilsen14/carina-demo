@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
@@ -12,7 +12,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBa
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
-public class LoginPage extends LoginPageBase implements IMobileUtils {
+public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
 
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
@@ -32,7 +32,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "login_button")
     private ExtendedWebElement loginBtn;
 
-    public LoginPage(WebDriver driver) {
+    public AndroidLoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -78,5 +78,56 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }
+
+    @Override
+    public boolean isNameInputFieldPresent() {
+        return nameInputField.isPresent();
+    }
+
+    @Override
+    public boolean isNameTextPrinted(String username) {
+        return username.equals(nameInputField.getText());
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
+        return passwordInputField.isPresent();
+    }
+
+    @Override
+    public boolean isPasswordTextPrinted(String password) {
+        return password.equals(passwordInputField.getText());
+    }
+
+    @Override
+    public boolean isMaleRadioBtnPresent() {
+        return maleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isFemaleRadioBtnPresent() {
+        return femaleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckBoxPresent() {
+        return privacyPolicyCheckbox.isPresent();
+    }
+
+    @Override
+    public boolean isMaleRadioBtnChecked() {
+        return maleRadioBtn.isChecked();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckBoxChecked() {
+        return privacyPolicyCheckbox.isChecked();
+    }
+
+    @Override
+    public boolean isLoginPageOpened() {
+        return loginBtn.isElementPresent();
+    }
+
 
 }

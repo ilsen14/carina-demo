@@ -1,19 +1,26 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPage extends WebViewPageBase {
+public class AndroidWebViewPage extends WebViewPageBase {
 
     @FindBy(className = "t708__btn")
     private ExtendedWebElement contactUsLink;
 
-    public WebViewPage(WebDriver driver) {
+    @FindBy(className = "android.widget.ImageButton")
+    private ExtendedWebElement leftMenuButton;
+
+    @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Map']")
+    private ExtendedWebElement mapLink;
+
+    public AndroidWebViewPage(WebDriver driver) {
         super(driver);
     }
 
@@ -22,5 +29,4 @@ public class WebViewPage extends WebViewPageBase {
         contactUsLink.click();
         return initPage(getDriver(), ContactUsPageBase.class);
     }
-
 }
