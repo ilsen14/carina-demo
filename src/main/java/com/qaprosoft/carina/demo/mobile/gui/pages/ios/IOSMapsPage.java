@@ -9,11 +9,9 @@ import org.openqa.selenium.WebDriver;
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = MapsPageBase.class)
 class IOSMapsPage extends MapsPageBase {
 
-
     public IOSMapsPage(WebDriver driver) {
         super(driver);
     }
-
 
     @Override
     public boolean isZoomInButtonPresent() {
