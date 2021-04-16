@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
-
 public abstract class ContactUsPageBase extends AbstractPage {
 
     public ContactUsPageBase(WebDriver driver) {

@@ -89,7 +89,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "isenko")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
-    public void testMyApp(){
+    public void testUserLogin(){
         SoftAssert softAssert = new SoftAssert();
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
@@ -118,7 +118,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "isenko")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
-    public void openMap(){
+    public void testVerifyMapFeatures(){
         SoftAssert softAssert = new SoftAssert();
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);

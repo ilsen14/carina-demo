@@ -10,7 +10,6 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MapsPageBase.class)
 public class AndroidMapsPage extends MapsPageBase {
 
-
     @ExtendedFindBy(androidUIAutomator ="new UiSelector().description(\"Zoom in\")")
     private ExtendedWebElement zoomInButton;
 

@@ -73,11 +73,6 @@ public class AndroidUIElementsPage extends UIElementsPageBase implements IMobile
     }
 
     @Override
-    public void clickOnMaleRadioButton() {
-        maleRadioButton.click();
-    }
-
-    @Override
     public void clickOnFemaleRadioButton() {
         femaleRadioButton.click();
     }
