@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
-import com.qaprosoft.carina.demo.consant.ProjectConstants;
+
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
@@ -11,10 +11,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Clas
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.consant.ProjectConstants;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class IOSLoginPage extends LoginPageBase {
-
 
 	@FindBy(xpath = "type = 'XCUIElementTypeTextField'")
 	@Predicate
@@ -40,11 +40,9 @@ public class IOSLoginPage extends LoginPageBase {
 	@Predicate
 	private ExtendedWebElement loginBtn;
 
-
 	public IOSLoginPage(WebDriver driver) {
 		super(driver);
 	}
-
 	@Override
 	public void typeName(String name) {
 		nameInputField.type(name);

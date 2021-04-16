@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
-import org.openqa.selenium.WebDriver;
-
 import com.qaprosoft.carina.core.gui.AbstractPage;
+
+import org.openqa.selenium.WebDriver;
 
 public abstract class LoginPageBase extends AbstractPage {
 
@@ -43,4 +43,6 @@ public abstract class LoginPageBase extends AbstractPage {
 	public abstract boolean isPrivacyPolicyCheckBoxChecked();
 
 	public abstract boolean isLoginPageOpened();
+
+
 }

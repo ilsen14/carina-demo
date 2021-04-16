@@ -1,14 +1,19 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ChartsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
-public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
+public class AndroidCarinaDescriptionPage extends CarinaDescriptionPageBase {
 
     @FindBy(id = "content_frame")
     private ExtendedWebElement webViewContent;
@@ -31,7 +36,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     @FindBy(className = "android.widget.ImageButton")
     private ExtendedWebElement leftMenuButton;
 
-    public CarinaDescriptionPage(WebDriver driver) {
+    public AndroidCarinaDescriptionPage(WebDriver driver) {
         super(driver);
     }
 
