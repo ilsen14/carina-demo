@@ -44,5 +44,4 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isLoginPageOpened();
 
-
 }

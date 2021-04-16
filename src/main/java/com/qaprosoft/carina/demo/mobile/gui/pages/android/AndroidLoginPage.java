@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
@@ -128,4 +128,6 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     public boolean isLoginPageOpened() {
         return loginBtn.isElementPresent();
     }
+
+
 }

@@ -10,7 +10,6 @@ public abstract class MapsPageBase extends AbstractPage {
         super(driver);
     }
 
-
     public abstract boolean isZoomInButtonPresent();
 
     public abstract boolean isZoomOutButtonPresent();
@@ -18,7 +17,5 @@ public abstract class MapsPageBase extends AbstractPage {
     public abstract boolean isZoomInButtonHigherPlaced();
 
     public abstract boolean isMapsPageOpened();
-
-
 
 }

@@ -1,14 +1,14 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ContactUsPageBase.class)
-public class ContactUsPage extends ContactUsPageBase {
+public class AndroidContactUsPage extends ContactUsPageBase {
 
     @FindBy(xpath = "//input[@name='Email']")
     private ExtendedWebElement emailField;
@@ -28,7 +28,7 @@ public class ContactUsPage extends ContactUsPageBase {
     @FindBy(id = "g-recaptcha-response")
     private ExtendedWebElement recaptcha;
 
-    public ContactUsPage(WebDriver driver) {
+    public AndroidContactUsPage(WebDriver driver) {
         super(driver);
     }
 

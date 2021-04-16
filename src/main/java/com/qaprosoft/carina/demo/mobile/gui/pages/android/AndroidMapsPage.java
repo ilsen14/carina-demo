@@ -1,14 +1,51 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MapsPageBase.class)
-public class MapsPage extends MapsPageBase {
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
 
-    public MapsPage(WebDriver driver) {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MapsPageBase.class)
+public class AndroidMapsPage extends MapsPageBase {
+
+
+    @ExtendedFindBy(androidUIAutomator ="new UiSelector().description(\"Zoom in\")")
+    private ExtendedWebElement zoomInButton;
+
+    @ExtendedFindBy(androidUIAutomator ="new UiSelector().description(\"Zoom out\")")
+    private ExtendedWebElement zoomOutButton;
+
+    @ExtendedFindBy(androidUIAutomator ="new UiSelector().resourceIdMatches(\".*id/drawer_layout\")")
+    private ExtendedWebElement innerLayout;
+
+    public AndroidMapsPage(WebDriver driver) {
         super(driver);
     }
 
-}
+    @Override
+    public boolean isZoomInButtonPresent() {
+        return zoomInButton.isPresent();
+    }
+
+    @Override
+    public boolean isZoomOutButtonPresent() {
+        return zoomOutButton.isPresent();
+    }
+
+    @Override
+    public boolean isMapsPageOpened() {
+        return innerLayout.isElementPresent();
+    }
+
+    @Override
+    public boolean isZoomInButtonHigherPlaced() {
+            int zoomIn =zoomInButton.getLocation().getY();
+            int zoomOut = zoomOutButton.getLocation().getY();
+            if(zoomIn<zoomOut){
+                return true;
+            }
+            return false;
+        }
+    }
