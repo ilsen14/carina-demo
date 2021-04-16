@@ -1,10 +1,11 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
-import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = MapsPageBase.class)
 class IOSMapsPage extends MapsPageBase {
