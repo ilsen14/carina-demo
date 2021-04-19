@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
@@ -48,7 +49,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void selectMaleSex() {
+    public void selectMaleGender() {
         maleRadioBtn.click();
     }
 
@@ -59,6 +60,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public CarinaDescriptionPageBase clickLoginBtn() {
+        waitUntil(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()),10);
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
@@ -74,7 +76,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
         String password = RandomStringUtils.randomAlphabetic(10);
         typeName(username);
         typePassword(password);
-        selectMaleSex();
+        selectMaleGender();
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }
@@ -128,6 +130,4 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     public boolean isLoginPageOpened() {
         return loginBtn.isElementPresent();
     }
-
-
 }

@@ -40,11 +40,6 @@ public class AndroidMapsPage extends MapsPageBase {
 
     @Override
     public boolean isZoomInButtonHigherPlaced() {
-            int zoomIn =zoomInButton.getLocation().getY();
-            int zoomOut = zoomOutButton.getLocation().getY();
-            if(zoomIn<zoomOut){
-                return true;
-            }
-            return false;
+        return (zoomInButton.getLocation().getY()) > (zoomOutButton.getLocation().getY());
         }
     }

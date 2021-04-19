@@ -14,7 +14,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract void typePassword(String password);
 
-	public abstract void selectMaleSex();
+	public abstract void selectMaleGender();
 
 	public abstract void checkPrivacyPolicyCheckbox();
 

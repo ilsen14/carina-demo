@@ -33,7 +33,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        loginPage.selectMaleSex();
+        loginPage.selectMaleGender();
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
@@ -105,7 +105,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
-        loginPage.selectMaleSex();
+        loginPage.selectMaleGender();
         softAssert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
@@ -134,7 +134,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Username was not printed");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Password was not printed");
-        loginPage.selectMaleSex();
+        loginPage.selectMaleGender();
         softAssert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();

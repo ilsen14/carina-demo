@@ -54,7 +54,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public void selectMaleSex() {
+	public void selectMaleGender() {
 		maleRadioBtn.click();
 	}
 
@@ -80,7 +80,7 @@ public class IOSLoginPage extends LoginPageBase {
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectMaleSex();
+		selectMaleGender();
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}
