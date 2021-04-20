@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -87,7 +88,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
     }
 
     @Test(description = "JIRA#DEMO-0011")
-    @MethodOwner(owner = "isenko")
+    @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testUserLogin(){
         SoftAssert softAssert = new SoftAssert();
@@ -148,5 +149,5 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(mapPage.isZoomInButtonHigherPlaced(), "Zoom in Button is lower than Zoom out");
         softAssert.assertAll();
     }
-
 }
+
