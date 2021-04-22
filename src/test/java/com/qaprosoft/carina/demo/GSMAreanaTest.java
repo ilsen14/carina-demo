@@ -1,7 +1,10 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.gui.components.*;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -11,11 +14,16 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
+import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.LoginService;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.components.TopMenu;
+import com.qaprosoft.carina.demo.gui.components.User;
+import com.qaprosoft.carina.demo.gui.components.UserService;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
-
-import java.util.List;
 
 public class GSMAreanaTest extends AbstractTest{
 
@@ -90,7 +98,6 @@ public class GSMAreanaTest extends AbstractTest{
     @MethodOwner(owner = "ilsen")
     @TestLabel(name = "feature" , value = {"web", "regression"})
     public void verifyArticleName(){
-        String text = "Realme teases the first Dimensity 1200-powered smartphone for India";
         UserService userService = new UserService();
         User user = userService.getUser();
         LoginService loginService = new LoginService();
@@ -100,6 +107,27 @@ public class GSMAreanaTest extends AbstractTest{
         NewsPage newsPage = footerMenu.openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(),"News page is opened");
         NewsItem newsItem = newsPage.getNewsItem(4);
-        Assert.assertEquals(newsItem.readTitle(), text, "Text is not same");
+        String newsItemTitle = newsItem.getNewsItemTitle();
+        ArticlePage articlePage = newsItem.openArticlePage();
+        Assert.assertEquals(newsItemTitle, articlePage.getArticleTitle(), "Text is not same");
+    }
+
+    @Test(description = "JIRA#AUTO-008")
+    @MethodOwner(owner = "ilsen")
+    @TestLabel(name = "feature" , value = {"web", "regression"})
+    public void verifyIphoneSearch(){
+        final String searchIphone = "Iphone";
+        UserService userService = new UserService();
+        User user = userService.getUser();
+        LoginService loginService = new LoginService();
+        loginService.login(user.getEmail(), user.getPassword());
+        HomePage homePage = new HomePage(getDriver());
+        FooterMenu footerMenu = homePage.getFooterMenu();
+        NewsPage newsPage = footerMenu.openNewsPage();
+        List<NewsItem> news = newsPage.searchNews(searchIphone);
+        Assert.assertFalse(CollectionUtils.isEmpty(news));
+        for(NewsItem n : news) {
+            Assert.assertTrue(StringUtils.containsIgnoreCase(n.getNewsItemTitle(), searchIphone), "Invalid search results!");
+        }
     }
 }
