@@ -34,16 +34,29 @@ public class NewsPage extends AbstractPage {
     
     @FindBy(xpath="//div[@class='news-item']")
     private List<NewsItem> news;
+
+    @FindBy(xpath = "//a[contains(@href, 'realme_teases_the_first_dimensity_1200powered_smartphone_for_india-news-48787.php')]")
+    public ExtendedWebElement firstNews;
     
     public NewsPage(WebDriver driver) {
         super(driver);
         setPageURL("/news.php3");
     }
-    
+
     public List<NewsItem> searchNews(String q) {
         searchTextField.type(q);
         searchButton.click();
         return news;
     }
-    
+
+    public NewsItem getNewsItem(int index){
+        return news.get(index);
+    }
+   public String checkText(){
+        return firstNews.getText();
+   }
+
+    public void enterNews(){
+        firstNews.click();
+    }
 }

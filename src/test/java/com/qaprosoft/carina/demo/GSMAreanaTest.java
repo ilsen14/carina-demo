@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo;
 
-import com.zebrunner.agent.core.annotation.TestLabel;
-
+import com.qaprosoft.carina.demo.gui.components.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -12,11 +11,11 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
-import com.qaprosoft.carina.demo.gui.components.LoginService;
-import com.qaprosoft.carina.demo.gui.components.TopMenu;
-import com.qaprosoft.carina.demo.gui.components.User;
-import com.qaprosoft.carina.demo.gui.components.UserService;
+import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.zebrunner.agent.core.annotation.TestLabel;
+
+import java.util.List;
 
 public class GSMAreanaTest extends AbstractTest{
 
@@ -85,5 +84,22 @@ public class GSMAreanaTest extends AbstractTest{
         LoginForm loginForm = topMenu.pressLoginButton();
         loginForm.login(user.getEmail(), wrongPassword);
         Assert.assertEquals(loginForm.errorMassage(), wrongPass, "You entered wrong password");
+    }
+
+    @Test(description = "JIRA#AUTO-008")
+    @MethodOwner(owner = "ilsen")
+    @TestLabel(name = "feature" , value = {"web", "regression"})
+    public void verifyArticleName(){
+        String text = "Realme teases the first Dimensity 1200-powered smartphone for India";
+        UserService userService = new UserService();
+        User user = userService.getUser();
+        LoginService loginService = new LoginService();
+        loginService.login(user.getEmail(),user.getPassword());
+        HomePage homePage = new HomePage(getDriver());
+        FooterMenu footerMenu = homePage.getFooterMenu();
+        NewsPage newsPage = footerMenu.openNewsPage();
+        Assert.assertTrue(newsPage.isPageOpened(),"News page is opened");
+        NewsItem newsItem = newsPage.getNewsItem(4);
+        Assert.assertEquals(newsItem.readTitle(), text, "Text is not same");
     }
 }

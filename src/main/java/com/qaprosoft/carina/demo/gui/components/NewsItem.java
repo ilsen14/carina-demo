@@ -26,12 +26,20 @@ public class NewsItem extends AbstractUIObject {
 
     @FindBy(xpath="./a")
     public ExtendedWebElement titleLink;
+
+    @FindBy(xpath = "//h1[contains(@class, 'article-info-name')]")
+    public ExtendedWebElement newsText;
     
     public NewsItem(WebDriver driver, SearchContext sc) {
         super(driver, sc);
     }
-    
-    public String readTitle() {
-        return titleLink.getElement().getText();
+
+    public String readTitle(){
+        assertElementPresent(titleLink);
+        return titleLink.getText();
+    }
+
+    public String compareNews(){
+        return newsText.getText();
     }
 }

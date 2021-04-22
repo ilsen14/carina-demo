@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -34,7 +33,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        loginPage.selectMaleGender();
+        loginPage.selectGender();
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
@@ -99,15 +98,14 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Page is not opened");
         softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
         softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
-        softAssert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
-        softAssert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(), "Gender Radio Button is not Present");
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
-        loginPage.selectMaleGender();
-        softAssert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
+        loginPage.selectGender();
+        softAssert.assertTrue(loginPage.isGenderRadioBtnChecked(), "Male button is not checked");
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
@@ -128,15 +126,14 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
         softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name input field is missing");
         softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is missing");
-        softAssert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
-        softAssert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(), "Gender Radio Button is not Present");
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Username was not printed");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Password was not printed");
-        loginPage.selectMaleGender();
-        softAssert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
+        loginPage.selectGender();
+        softAssert.assertTrue(loginPage.isGenderRadioBtnChecked(), "Male button is not checked");
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
