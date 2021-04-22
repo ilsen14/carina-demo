@@ -14,7 +14,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract void typePassword(String password);
 
-	public abstract void selectMaleGender();
+	public abstract void selectGender();
 
 	public abstract void checkPrivacyPolicyCheckbox();
 
@@ -32,13 +32,11 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isPasswordTextPrinted(String password);
 
-	public abstract boolean isMaleRadioBtnPresent();
-
-	public abstract boolean isFemaleRadioBtnPresent();
+	public abstract boolean isGenderRadioBtnPresent();
 
 	public abstract boolean isPrivacyPolicyCheckBoxPresent();
 
-	public abstract boolean isMaleRadioBtnChecked();
+	public abstract boolean isGenderRadioBtnChecked();
 
 	public abstract boolean isPrivacyPolicyCheckBoxChecked();
 

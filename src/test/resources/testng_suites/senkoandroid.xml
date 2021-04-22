@@ -6,6 +6,7 @@
     <parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
 
     <test name="Mobile test">
+        <parameter name="testOwner" value="ilsen"></parameter>
         <classes>
             <class name="com.qaprosoft.carina.demo.MobileSampleTest">
                 <methods>

@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,11 +22,8 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
-    private ExtendedWebElement maleRadioBtn;
-
-    @FindBy(id = "radio_female")
-    private ExtendedWebElement femaleRadioBtn;
+    @FindBy(id = "radio_%s")
+    private ExtendedWebElement genderRadioBtn;
 
     @FindBy(id = "checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
@@ -49,8 +47,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void selectMaleGender() {
-        maleRadioBtn.click();
+    public void selectGender() {
     }
 
     @Override
@@ -76,7 +73,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
         String password = RandomStringUtils.randomAlphabetic(10);
         typeName(username);
         typePassword(password);
-        selectMaleGender();
+        selectGender();
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }
@@ -102,13 +99,12 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isMaleRadioBtnPresent() {
-        return maleRadioBtn.isPresent();
+    public boolean isGenderRadioBtnPresent() {
+        return genderRadioBtn.isPresent();
     }
 
-    @Override
-    public boolean isFemaleRadioBtnPresent() {
-        return femaleRadioBtn.isPresent();
+    public void getGenderEnum() {
+        genderRadioBtn.format(GenderEnum.getGenderEnum.isChecked());
     }
 
     @Override
@@ -117,8 +113,8 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isMaleRadioBtnChecked() {
-        return maleRadioBtn.isChecked();
+    public boolean isGenderRadioBtnChecked() {
+        return genderRadioBtn.isChecked();
     }
 
     @Override

@@ -54,7 +54,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public void selectMaleGender() {
+	public void selectGender() {
 		maleRadioBtn.click();
 	}
 
@@ -80,7 +80,7 @@ public class IOSLoginPage extends LoginPageBase {
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectMaleGender();
+		selectGender();
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}
@@ -106,12 +106,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isMaleRadioBtnPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
-	public boolean isFemaleRadioBtnPresent() {
+	public boolean isGenderRadioBtnPresent() {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 
@@ -121,7 +116,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isMaleRadioBtnChecked() {
+	public boolean isGenderRadioBtnChecked() {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 
