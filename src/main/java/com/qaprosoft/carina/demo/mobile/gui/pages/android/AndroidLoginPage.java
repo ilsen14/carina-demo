@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,6 +49,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public void selectGender() {
+        throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_ANDROID);
     }
 
     @Override
@@ -103,18 +105,15 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
         return genderRadioBtn.isPresent();
     }
 
-    public void getGenderEnum() {
-        genderRadioBtn.format(GenderEnum.getGenderEnum.isChecked());
+    @Override
+    public boolean isGenderButtonChecked(GenderEnum genderEnum) {
+        genderRadioBtn.format(genderEnum.getGender()).isChecked();
+        return false;
     }
 
     @Override
     public boolean isPrivacyPolicyCheckBoxPresent() {
         return privacyPolicyCheckbox.isPresent();
-    }
-
-    @Override
-    public boolean isGenderRadioBtnChecked() {
-        return genderRadioBtn.isChecked();
     }
 
     @Override

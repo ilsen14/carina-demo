@@ -97,7 +97,7 @@ public class GSMAreanaTest extends AbstractTest{
     @Test(description = "JIRA#AUTO-008")
     @MethodOwner(owner = "ilsen")
     @TestLabel(name = "feature" , value = {"web", "regression"})
-    public void verifyArticleName(){
+    public void compareArticleTitles(){
         UserService userService = new UserService();
         User user = userService.getUser();
         LoginService loginService = new LoginService();

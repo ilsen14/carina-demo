@@ -10,13 +10,13 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 public class LoginForm extends AbstractUIObject {
 
     @FindBy(xpath = "//input[contains(@id, 'email')]")
-    private ExtendedWebElement inputEmail;
+    private ExtendedWebElement emailTextField;
 
     @FindBy(xpath = "//input[contains(@id, 'upass')]")
-    private ExtendedWebElement inputPassword;
+    private ExtendedWebElement passwordTextField;
 
     @FindBy(xpath = "//input[contains(@id, 'nick-submit')]")
-    private ExtendedWebElement submitLogin;
+    private ExtendedWebElement loginButton;
 
     @FindBy(xpath = "//div[contains(@class,'res-error')]/p")
     public ExtendedWebElement textError;
@@ -26,9 +26,9 @@ public class LoginForm extends AbstractUIObject {
     }
 
     public void login(String email, String pass){
-        inputEmail.type(email);
-        inputPassword.type(pass);
-        submitLogin.click();
+        emailTextField.type(email);
+        passwordTextField.type(pass);
+        loginButton.click();
     }
 
     public String errorMassage() {

@@ -29,7 +29,7 @@ public class NewsItem extends AbstractUIObject {
     public ExtendedWebElement titleLink;
 
     @FindBy(xpath = ".//h1[contains(@class, 'article-info-name')]")
-    public ExtendedWebElement newsText;
+    public ExtendedWebElement newsTitle;
     
     public NewsItem(WebDriver driver, SearchContext sc) {
         super(driver, sc);

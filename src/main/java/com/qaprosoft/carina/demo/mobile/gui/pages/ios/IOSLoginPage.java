@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
@@ -106,17 +107,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isGenderRadioBtnPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
 	public boolean isPrivacyPolicyCheckBoxPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
-	public boolean isGenderRadioBtnChecked() {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 
@@ -127,6 +118,16 @@ public class IOSLoginPage extends LoginPageBase {
 
 	@Override
 	public boolean isLoginPageOpened() {
+		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
+	}
+
+	@Override
+	public boolean isGenderRadioBtnPresent() {
+		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
+	}
+
+	@Override
+	public boolean isGenderButtonChecked(GenderEnum genderEnum) {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 }

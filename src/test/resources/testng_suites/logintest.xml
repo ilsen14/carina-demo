@@ -24,6 +24,8 @@
                     <include name="testUserLogin"/>
                     <include name="testWrongEmail"/>
                     <include name="testWrongPass"/>
+                    <include name="compareArticleTitles"/>
+                    <include name="verifyIphoneSearch"/>
                 </methods>
             </class>
         </classes>

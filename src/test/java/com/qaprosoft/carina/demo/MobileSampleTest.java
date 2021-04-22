@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -105,7 +106,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
         loginPage.selectGender();
-        softAssert.assertTrue(loginPage.isGenderRadioBtnChecked(), "Male button is not checked");
+        softAssert.assertTrue(loginPage.isGenderButtonChecked(GenderEnum.MALE));
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
@@ -132,8 +133,8 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Username was not printed");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Password was not printed");
-        loginPage.selectGender();
-        softAssert.assertTrue(loginPage.isGenderRadioBtnChecked(), "Male button is not checked");
+//        loginPage.selectGender();
+        softAssert.assertTrue(loginPage.isGenderButtonChecked(GenderEnum.MALE));
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
