@@ -14,7 +14,6 @@ import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
-import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.LoginService;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
@@ -37,7 +36,7 @@ public class GSMAreanaTest extends AbstractTest{
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         TopMenu topMenu = homePage.getTopMenu();
-        topMenu.validateIconsPresent(softAssert);
+        topMenu.validateTopMainMenuElements(softAssert);
         softAssert.assertAll();
     }
 
