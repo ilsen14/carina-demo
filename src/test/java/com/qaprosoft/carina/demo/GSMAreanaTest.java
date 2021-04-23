@@ -37,15 +37,7 @@ public class GSMAreanaTest extends AbstractTest{
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         TopMenu topMenu = homePage.getTopMenu();
-        softAssert.assertTrue(topMenu.isSearchTopIconPresent(), "There is no search icon");
-        softAssert.assertTrue(topMenu.isTipsTopIconPresent(), "There is no tips icon");
-        softAssert.assertTrue(topMenu.isFacebookTopIconPresent(), "There is no facebook icon");
-        softAssert.assertTrue(topMenu.isInstagramTopIconPresent(), "Instagram icon is not found");
-        softAssert.assertTrue(topMenu.isTwitterIconPresent(), "Can't find twitter button");
-        softAssert.assertTrue(topMenu.isNewsTopIconPresent(),"News icon is not present");
-        softAssert.assertTrue(topMenu.isLoginIconPresent(), "Login button is not present");
-        softAssert.assertTrue(topMenu.isSignUpIconPresent(),"SignUp icon is absent");
-        softAssert.assertTrue(topMenu.isYouTubeTopIconPresent(), "There is no youtube icon");
+        topMenu.validateIconsPresent(softAssert);
         softAssert.assertAll();
     }
 
@@ -86,8 +78,7 @@ public class GSMAreanaTest extends AbstractTest{
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Page is not opened");
-        TopMenu topMenu = homePage.getTopMenu();
-        LoginForm loginForm = topMenu.pressLoginButton();
+        LoginForm loginForm = homePage.getTopMenu().pressLoginButton();
         loginForm.login(user.getEmail(), ProjectConstants.WRONG_PASSWORD);
         Assert.assertEquals(loginForm.errorMassage(), wrongPass, "You entered wrong password");
     }
@@ -101,8 +92,7 @@ public class GSMAreanaTest extends AbstractTest{
         LoginService loginService = new LoginService();
         loginService.login(user.getEmail(),user.getPassword());
         HomePage homePage = new HomePage(getDriver());
-        FooterMenu footerMenu = homePage.getFooterMenu();
-        NewsPage newsPage = footerMenu.openNewsPage();
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(),"News page is opened");
         NewsItem newsItem = newsPage.getNewsItem(4);
         String newsItemTitle = newsItem.getNewsItemTitle();
@@ -120,8 +110,7 @@ public class GSMAreanaTest extends AbstractTest{
         LoginService loginService = new LoginService();
         loginService.login(user.getEmail(), user.getPassword());
         HomePage homePage = new HomePage(getDriver());
-        FooterMenu footerMenu = homePage.getFooterMenu();
-        NewsPage newsPage = footerMenu.openNewsPage();
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
         List<NewsItem> news = newsPage.searchNews(searchIphone);
         Assert.assertFalse(CollectionUtils.isEmpty(news));
         for(NewsItem iphoneSearchList : news) {

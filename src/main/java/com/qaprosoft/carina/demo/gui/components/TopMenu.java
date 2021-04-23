@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
+import org.testng.asserts.SoftAssert;
 
 public class TopMenu extends AbstractUIObject{
 
@@ -96,5 +97,17 @@ public class TopMenu extends AbstractUIObject{
 
     public boolean isUserLoggedIn(){
         return activeLogin.isPresent();
+    }
+
+    public void validateIconsPresent(SoftAssert softAssert) {
+        softAssert.assertTrue(isSearchTopIconPresent(), "There is no search icon");
+        softAssert.assertTrue(isTipsTopIconPresent(), "There is no tips icon");
+        softAssert.assertTrue(isFacebookTopIconPresent(), "There is no facebook icon");
+        softAssert.assertTrue(isInstagramTopIconPresent(), "Instagram icon is not found");
+        softAssert.assertTrue(isTwitterIconPresent(), "Can't find twitter button");
+        softAssert.assertTrue(isNewsTopIconPresent(), "News icon is not present");
+        softAssert.assertTrue(isLoginIconPresent(), "Login button is not present");
+        softAssert.assertTrue(isSignUpIconPresent(), "SignUp icon is absent");
+        softAssert.assertTrue(isYouTubeTopIconPresent(), "There is no youtube icon");
     }
 }
