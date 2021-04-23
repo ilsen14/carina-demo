@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.enums.GenderEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -9,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
@@ -34,7 +34,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        loginPage.selectGender();
+        loginPage.selectGender(GenderEnum.MALE);
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
@@ -99,13 +99,13 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Page is not opened");
         softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
         softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
-        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(), "Gender Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(GenderEnum.MALE), "Gender Radio Button is not Present");
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Name was not printed in  the field");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Name was not printed in  the field");
-        loginPage.selectGender();
+        loginPage.selectGender(GenderEnum.MALE);
         softAssert.assertTrue(loginPage.isGenderButtonChecked(GenderEnum.MALE));
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();
@@ -127,13 +127,13 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page is not opened!");
         softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name input field is missing");
         softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is missing");
-        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(), "Gender Radio Button is not Present");
+        softAssert.assertTrue(loginPage.isGenderRadioBtnPresent(GenderEnum.MALE), "Gender Radio Button is not Present");
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
         loginPage.typeName(username);
         loginPage.typePassword(password);
         softAssert.assertTrue(loginPage.isNameTextPrinted(username), "Username was not printed");
         softAssert.assertTrue(loginPage.isPasswordTextPrinted(password), "Password was not printed");
-//        loginPage.selectGender();
+        loginPage.selectGender(GenderEnum.MALE);
         softAssert.assertTrue(loginPage.isGenderButtonChecked(GenderEnum.MALE));
         softAssert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
         loginPage.checkPrivacyPolicyCheckbox();

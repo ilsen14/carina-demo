@@ -1,12 +1,8 @@
 package com.qaprosoft.carina.demo.enums;
 
-import com.itextpdf.text.pdf.RadioCheckField;
-
 public enum GenderEnum {
-    MALE("male"),
-    FEMALE("female");
-
-    public static RadioCheckField getGenderEnum;
+    MALE("[1]"),
+    FEMALE("[2]");
 
     private final String gender;
 

@@ -3,7 +3,6 @@ package com.qaprosoft.carina.demo;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -13,6 +12,7 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.LoginService;
@@ -65,7 +65,6 @@ public class GSMAreanaTest extends AbstractTest{
     @TestLabel(name = "feature", value = { "web", "regression" })
     public void testWrongEmail() {
         String invalidEmail = "Reason: User record not found.";
-        String wrongEmail = "wrongemail@gmail.com";
         UserService userService = new UserService();
         User user = userService.getUser();
         HomePage homePage = new HomePage(getDriver());
@@ -73,7 +72,7 @@ public class GSMAreanaTest extends AbstractTest{
         Assert.assertTrue(homePage.isPageOpened(), "Page is not opened");
         TopMenu topMenu = homePage.getTopMenu();
         LoginForm loginForm = topMenu.pressLoginButton();
-        loginForm.login(wrongEmail, user.getPassword());
+        loginForm.login(ProjectConstants.WRONG_EMAIL, user.getPassword());
         Assert.assertEquals(loginForm.errorMassage(), invalidEmail, "You entered invalid Email");
     }
 
@@ -82,7 +81,6 @@ public class GSMAreanaTest extends AbstractTest{
     @TestLabel(name = "feature", value = { "web", "regression" })
     public void testWrongPass() {
         String wrongPass = "Reason: Wrong password.";
-        String wrongPassword = RandomStringUtils.randomAlphabetic(10);
         UserService userService = new UserService();
         User user = userService.getUser();
         HomePage homePage = new HomePage(getDriver());
@@ -90,7 +88,7 @@ public class GSMAreanaTest extends AbstractTest{
         Assert.assertTrue(homePage.isPageOpened(), "Page is not opened");
         TopMenu topMenu = homePage.getTopMenu();
         LoginForm loginForm = topMenu.pressLoginButton();
-        loginForm.login(user.getEmail(), wrongPassword);
+        loginForm.login(user.getEmail(), ProjectConstants.WRONG_PASSWORD);
         Assert.assertEquals(loginForm.errorMassage(), wrongPass, "You entered wrong password");
     }
 
@@ -126,8 +124,8 @@ public class GSMAreanaTest extends AbstractTest{
         NewsPage newsPage = footerMenu.openNewsPage();
         List<NewsItem> news = newsPage.searchNews(searchIphone);
         Assert.assertFalse(CollectionUtils.isEmpty(news));
-        for(NewsItem n : news) {
-            Assert.assertTrue(StringUtils.containsIgnoreCase(n.getNewsItemTitle(), searchIphone), "Invalid search results!");
+        for(NewsItem iphoneSearchList : news) {
+            Assert.assertTrue(StringUtils.containsIgnoreCase(iphoneSearchList.getNewsItemTitle(), searchIphone), "Invalid search results!");
         }
     }
 }

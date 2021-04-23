@@ -1,9 +1,9 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
-import com.qaprosoft.carina.demo.enums.GenderEnum;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 
 public abstract class LoginPageBase extends AbstractPage {
 
@@ -15,7 +15,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract void typePassword(String password);
 
-	public abstract void selectGender();
+	public abstract void selectGender(GenderEnum gender);
 
 	public abstract void checkPrivacyPolicyCheckbox();
 
@@ -33,9 +33,9 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isPasswordTextPrinted(String password);
 
-	public abstract boolean isGenderRadioBtnPresent();
+	public abstract boolean isGenderRadioBtnPresent(GenderEnum gender);
 
-	public abstract boolean isGenderButtonChecked(GenderEnum genderEnum);
+	public abstract boolean isGenderButtonChecked(GenderEnum gender);
 
 	public abstract boolean isPrivacyPolicyCheckBoxPresent();
 
