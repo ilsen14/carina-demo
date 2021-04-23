@@ -99,7 +99,7 @@ public class TopMenu extends AbstractUIObject{
         return activeLogin.isPresent();
     }
 
-    public void validateIconsPresent(SoftAssert softAssert) {
+    public void validateTopMainMenuElements(SoftAssert softAssert) {
         softAssert.assertTrue(isSearchTopIconPresent(), "There is no search icon");
         softAssert.assertTrue(isTipsTopIconPresent(), "There is no tips icon");
         softAssert.assertTrue(isFacebookTopIconPresent(), "There is no facebook icon");
