@@ -1,13 +1,15 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
@@ -20,11 +22,8 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
-    private ExtendedWebElement maleRadioBtn;
-
-    @FindBy(id = "radio_female")
-    private ExtendedWebElement femaleRadioBtn;
+    @FindBy(xpath = "//android.widget.RadioButton%s")
+    private ExtendedWebElement genderRadioBtn;
 
     @FindBy(id = "checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
@@ -48,8 +47,8 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void selectMaleSex() {
-        maleRadioBtn.click();
+    public void selectGender(GenderEnum gender) {
+        genderRadioBtn.format(gender.getGender()).click();
     }
 
     @Override
@@ -59,6 +58,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public CarinaDescriptionPageBase clickLoginBtn() {
+        waitUntil(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()), 10);
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
@@ -74,7 +74,7 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
         String password = RandomStringUtils.randomAlphabetic(10);
         typeName(username);
         typePassword(password);
-        selectMaleSex();
+        selectGender(GenderEnum.MALE);
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }
@@ -100,23 +100,18 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isMaleRadioBtnPresent() {
-        return maleRadioBtn.isPresent();
+    public boolean isGenderRadioBtnPresent(GenderEnum gender) {
+        return genderRadioBtn.format(gender.getGender()).isPresent();
     }
 
     @Override
-    public boolean isFemaleRadioBtnPresent() {
-        return femaleRadioBtn.isPresent();
+    public boolean isGenderButtonChecked(GenderEnum gender) {
+        return genderRadioBtn.format(gender.getGender()).isChecked();
     }
 
     @Override
     public boolean isPrivacyPolicyCheckBoxPresent() {
         return privacyPolicyCheckbox.isPresent();
-    }
-
-    @Override
-    public boolean isMaleRadioBtnChecked() {
-        return maleRadioBtn.isChecked();
     }
 
     @Override
@@ -128,6 +123,4 @@ public class AndroidLoginPage extends LoginPageBase implements IMobileUtils {
     public boolean isLoginPageOpened() {
         return loginBtn.isElementPresent();
     }
-
-
 }

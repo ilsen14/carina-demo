@@ -9,6 +9,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.ClassChain;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.demo.enums.GenderEnum;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
@@ -54,8 +55,8 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public void selectMaleSex() {
-		maleRadioBtn.click();
+	public void selectGender(GenderEnum gender) {
+		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class IOSLoginPage extends LoginPageBase {
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectMaleSex();
+		selectGender(GenderEnum.MALE);
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}
@@ -106,22 +107,7 @@ public class IOSLoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isMaleRadioBtnPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
-	public boolean isFemaleRadioBtnPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
 	public boolean isPrivacyPolicyCheckBoxPresent() {
-		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
-	}
-
-	@Override
-	public boolean isMaleRadioBtnChecked() {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 
@@ -132,6 +118,16 @@ public class IOSLoginPage extends LoginPageBase {
 
 	@Override
 	public boolean isLoginPageOpened() {
+		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
+	}
+
+	@Override
+	public boolean isGenderRadioBtnPresent(GenderEnum gender) {
+		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
+	}
+
+	@Override
+	public boolean isGenderButtonChecked(GenderEnum gender) {
 		throw new UnsupportedOperationException(ProjectConstants.UNIMPLEMENTED_IOS);
 	}
 }

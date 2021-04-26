@@ -17,7 +17,6 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -36,6 +35,7 @@ import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.zebrunner.agent.core.annotation.TestLabel;
 
 /**
  * This sample shows how create Web test.
@@ -105,8 +105,7 @@ public class WebSampleTest extends AbstractTest {
         List<NewsItem> news = newsPage.searchNews(searchQ);
         Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
         for(NewsItem n : news) {
-            System.out.println(n.readTitle());
-            Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
+            Assert.assertTrue(StringUtils.containsIgnoreCase(n.getNewsItemTitle(), searchQ), "Invalid search results!");
         }
     }
 

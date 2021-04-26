@@ -18,30 +18,40 @@ package com.qaprosoft.carina.demo.gui.pages;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
 
 public class HomePage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    
+
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
+
+    @FindBy(id = "header")
+    private TopMenu topMenu;
 
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
 
     @FindBy(className = "news-column-index")
     private ExtendedWebElement newsColumn;
+
+    @FindBy(xpath = "//*[contains(text(), 'User record not found.')]")
+    private ExtendedWebElement userNotFound;
+
+    @FindBy(xpath = "//*[contains(text(), 'Wrong password.')]")
+    private ExtendedWebElement wrongPassword;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -51,6 +61,10 @@ public class HomePage extends AbstractPage {
 
     public FooterMenu getFooterMenu() {
         return footerMenu;
+    }
+
+    public TopMenu getTopMenu(){
+        return topMenu;
     }
 
     public BrandModelsPage selectBrand(String brand) {
@@ -65,8 +79,16 @@ public class HomePage extends AbstractPage {
         }
         throw new RuntimeException("Unable to open brand: " + brand);
     }
-    
+
     public WeValuePrivacyAd getWeValuePrivacyAd() {
     	return new WeValuePrivacyAd(driver);
+    }
+
+    public boolean isFailedTextPresent(){
+        return userNotFound.isPresent();
+    }
+
+    public boolean isWrongPasswordTextPresent(){
+        return wrongPassword.isPresent();
     }
 }

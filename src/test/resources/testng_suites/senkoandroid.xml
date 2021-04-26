@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Android test - Login, Map" verbose="1" parallel="methods">
+
+    <parameter name="suiteOwner" value="isenko"/>
+
+    <parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
+
+    <test name="Mobile test">
+        <parameter name="testOwner" value="ilsen"></parameter>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.MobileSampleTest">
+                <methods>
+                    <include name="testVerifyMapFeatures"/>
+                    <include name="testUserLogin"/>
+                    <include name="testUIElements"/>
+                </methods>
+            </class>>
+        </classes>
+    </test>
+
+</suite>
+
