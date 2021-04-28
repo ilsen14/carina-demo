@@ -2,7 +2,6 @@ package com.qaprosoft.carina.demo.gui.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -28,8 +27,5 @@ public class GlossaryItem extends AbstractUIObject {
         }
         return items;
     }
-    public void printListTitle() {
-        for (String str : items) {
-        }
-    }
 }
+
