@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.services;
 
 public class User {
 
