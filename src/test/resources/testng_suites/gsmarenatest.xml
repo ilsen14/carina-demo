@@ -16,7 +16,40 @@
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
     <parameter name="jenkinsAutoScreenshot" value="true"/>
 
-    <test name="GSM arena web login test">
+    <test name="Iphone Search Test">
+        <parameter name="phoneSearch" value="iPhone"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
+                <methods>
+                    <include name="verifyPhoneSearch"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="LG Search Test">
+        <parameter name="phoneSearch" value="LG"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
+                <methods>
+                    <include name="verifyPhoneSearch"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="NoKia search Test">
+        <parameter name="phoneSearch" value="NOKIA"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
+                <methods>
+                    <include name="verifyPhoneSearch"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="GSM arena web tests">
         <classes>
             <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
                 <methods>
@@ -25,7 +58,6 @@
                     <include name="testWrongEmail"/>
                     <include name="testWrongPass"/>
                     <include name="compareArticleTitles"/>
-                    <include name="verifyIphoneSearch"/>
                     <include name="testVerifyGlossaryFirstLetterInTitle"/>
                     <include name="testVerifyGlossaryTextByAlphabets"/>
                 </methods>

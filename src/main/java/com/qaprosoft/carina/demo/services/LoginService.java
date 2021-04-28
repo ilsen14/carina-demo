@@ -1,10 +1,10 @@
 package com.qaprosoft.carina.demo.services;
 
-import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
+import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 
 public class LoginService implements IDriverPool {

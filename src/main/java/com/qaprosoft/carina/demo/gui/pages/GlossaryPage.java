@@ -1,15 +1,15 @@
 package com.qaprosoft.carina.demo.gui.pages;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.GlossaryItem;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.components.GlossaryItem;
 
 public class GlossaryPage extends AbstractPage {
 
@@ -47,7 +47,7 @@ public class GlossaryPage extends AbstractPage {
         return true;
     }
 
-    public boolean verifyAlphabeticOrder(List<GlossaryItem> glossaryItems) {
+    public boolean verifyAlphabeticalOrder(List<GlossaryItem> glossaryItems) {
         for (GlossaryItem glossaryItem : glossaryItems) {
             List<String> sortedString = glossaryItem.getTitles().stream()
                     .sorted()

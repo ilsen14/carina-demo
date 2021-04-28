@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -99,21 +100,20 @@ public class GSMArenaTest extends AbstractTest{
         Assert.assertEquals(newsItemTitle, articlePage.getArticleTitle(), "Text is not same");
     }
 
-    @Test(description = "JIRA#AUTO-008")
+    @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "ilsen")
-    @TestLabel(name = "feature" , value = {"web", "regression"})
-    public void verifyIphoneSearch(){
-        final String searchIphone = "Iphone";
+    @Parameters({"phoneSearch"})
+    public void verifyPhoneSearch(String search) {
         UserService userService = new UserService();
         User user = userService.getUser();
         LoginService loginService = new LoginService();
         loginService.login(user.getEmail(), user.getPassword());
         HomePage homePage = new HomePage(getDriver());
         NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
-        List<NewsItem> news = newsPage.searchNews(searchIphone);
-        Assert.assertFalse(CollectionUtils.isEmpty(news));
-        for(NewsItem iphoneSearchList : news) {
-            Assert.assertTrue(StringUtils.containsIgnoreCase(iphoneSearchList.getNewsItemTitle(), searchIphone), "Invalid search results!");
+        List<NewsItem> news = newsPage.searchNews(search);
+        Assert.assertFalse(CollectionUtils.isEmpty(news), "Failed search");
+        for (NewsItem searchList : news) {
+            Assert.assertTrue(StringUtils.containsIgnoreCase(searchList.getNewsItemTitle(), search), "Invalid search results!");
         }
     }
 
@@ -138,6 +138,6 @@ public class GSMArenaTest extends AbstractTest{
         GlossaryPage glossaryPage = homePage.getFooterMenu().openGlossaryPage();
         Assert.assertTrue(glossaryPage.isPageOpened(), "Glossary Page isn't opened");
         Assert.assertTrue(glossaryPage.verifyHeaderAndTextEquality(), "Header and text items don't match");
-        Assert.assertTrue(glossaryPage.verifyAlphabeticOrder(glossaryPage.glossaryItem));
+        Assert.assertTrue(glossaryPage.verifyAlphabeticalOrder(glossaryPage.glossaryItem));
     }
 }

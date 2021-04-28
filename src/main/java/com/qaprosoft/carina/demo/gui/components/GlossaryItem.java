@@ -32,6 +32,4 @@ public class GlossaryItem extends AbstractUIObject {
         for (String str : items) {
         }
     }
-
-
 }
