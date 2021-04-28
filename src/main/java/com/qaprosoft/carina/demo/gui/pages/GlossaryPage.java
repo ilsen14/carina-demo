@@ -68,5 +68,3 @@ public class GlossaryPage extends AbstractPage {
         this.glossaryItem = glossaryItem;
     }
 }
-
-
