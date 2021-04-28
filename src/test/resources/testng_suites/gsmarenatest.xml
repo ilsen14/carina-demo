@@ -18,7 +18,7 @@
 
     <test name="GSM arena web login test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.GSMAreanaTest" >
+            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
                 <methods>
                     <include name="verifyComponentsPresence"/>
                     <include name="testUserLogin"/>
@@ -26,6 +26,8 @@
                     <include name="testWrongPass"/>
                     <include name="compareArticleTitles"/>
                     <include name="verifyIphoneSearch"/>
+                    <include name="testVerifyGlossaryFirstLetterInTitle"/>
+                    <include name="testVerifyGlossaryTextByAlphabets"/>
                 </methods>
             </class>
         </classes>

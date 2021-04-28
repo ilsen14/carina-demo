@@ -1,5 +1,6 @@
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.services;
 
+import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;

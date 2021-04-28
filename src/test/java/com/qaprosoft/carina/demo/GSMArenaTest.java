@@ -14,17 +14,18 @@ import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
-import com.qaprosoft.carina.demo.gui.components.LoginService;
+import com.qaprosoft.carina.demo.services.LoginService;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
-import com.qaprosoft.carina.demo.gui.components.User;
-import com.qaprosoft.carina.demo.gui.components.UserService;
+import com.qaprosoft.carina.demo.services.User;
+import com.qaprosoft.carina.demo.services.UserService;
+import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 
-public class GSMAreanaTest extends AbstractTest{
+public class GSMArenaTest extends AbstractTest{
 
     @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "ilsen")
@@ -61,8 +62,7 @@ public class GSMAreanaTest extends AbstractTest{
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Page is not opened");
-        TopMenu topMenu = homePage.getTopMenu();
-        LoginForm loginForm = topMenu.pressLoginButton();
+        LoginForm loginForm = homePage.getTopMenu().pressLoginButton();
         loginForm.login(ProjectConstants.WRONG_EMAIL, user.getPassword());
         Assert.assertEquals(loginForm.errorMassage(), invalidEmail, "You entered invalid Email");
     }
@@ -115,5 +115,29 @@ public class GSMAreanaTest extends AbstractTest{
         for(NewsItem iphoneSearchList : news) {
             Assert.assertTrue(StringUtils.containsIgnoreCase(iphoneSearchList.getNewsItemTitle(), searchIphone), "Invalid search results!");
         }
+    }
+
+    @Test(description = "JIRA#AUTO-0008")
+    @MethodOwner(owner = "ilsen")
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testVerifyGlossaryFirstLetterInTitle() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        GlossaryPage glossaryPage = homePage.getFooterMenu().openGlossaryPage();
+        Assert.assertTrue(glossaryPage.isPageOpened(), "Glossary Page isn't opened");
+        Assert.assertTrue(glossaryPage.verifyHeaderAndTextEquality(), "Elements don't match");
+        Assert.assertTrue(glossaryPage.verifyTitleByFirstLetter(), "Not alphabet sort");
+    }
+
+    @Test(description = "JIRA#AUTO-0008")
+    @MethodOwner(owner = "ilsen")
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testVerifyGlossaryTextByAlphabets() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        GlossaryPage glossaryPage = homePage.getFooterMenu().openGlossaryPage();
+        Assert.assertTrue(glossaryPage.isPageOpened(), "Glossary Page isn't opened");
+        Assert.assertTrue(glossaryPage.verifyHeaderAndTextEquality(), "Header and text items don't match");
+        Assert.assertTrue(glossaryPage.verifyAlphabeticOrder(glossaryPage.glossaryItem));
     }
 }
