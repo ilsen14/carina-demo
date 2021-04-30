@@ -50,6 +50,9 @@ public class TopMenu extends AbstractUIObject{
     @FindBy(id = "nick-submit")
     private ExtendedWebElement loginButton;
 
+    @FindBy(xpath = "//button[contains(@aria-label,'Toggle Navigation')]")
+    private ExtendedWebElement burgerMenu;
+
     public TopMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -97,6 +100,12 @@ public class TopMenu extends AbstractUIObject{
 
     public boolean isUserLoggedIn(){
         return activeLogin.isPresent();
+    }
+
+
+    public HamburgerMenu openHamburgerMenu(){
+        burgerMenu.click();
+        return new HamburgerMenu(driver);
     }
 
     public void validateTopMainMenuElements(SoftAssert softAssert) {

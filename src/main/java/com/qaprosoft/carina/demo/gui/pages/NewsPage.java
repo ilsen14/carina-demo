@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.gui.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,6 +11,8 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 
 public class NewsPage extends AbstractPage {
+
+    private final static Logger LOGGER = Logger.getLogger(NewsPage.class);
     
     @FindBy(className="searchFor")
     private ExtendedWebElement searchTextField;
@@ -27,6 +30,7 @@ public class NewsPage extends AbstractPage {
 
     public List<NewsItem> searchNews(String searchText) {
         searchTextField.type(searchText);
+        LOGGER.info("Typed :" + searchText);
         searchButton.click();
         return news;
     }
