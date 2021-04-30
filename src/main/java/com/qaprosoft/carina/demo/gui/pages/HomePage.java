@@ -28,6 +28,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
@@ -63,7 +64,7 @@ public class HomePage extends AbstractPage {
         return footerMenu;
     }
 
-    public TopMenu getTopMenu(){
+    public TopMenu getTopMenu() {
         return topMenu;
     }
 
@@ -81,14 +82,16 @@ public class HomePage extends AbstractPage {
     }
 
     public WeValuePrivacyAd getWeValuePrivacyAd() {
-    	return new WeValuePrivacyAd(driver);
+        return new WeValuePrivacyAd(driver);
     }
 
-    public boolean isFailedTextPresent(){
+    public boolean isFailedTextPresent() {
         return userNotFound.isPresent();
     }
 
-    public boolean isWrongPasswordTextPresent(){
+    public boolean isWrongPasswordTextPresent() {
         return wrongPassword.isPresent();
     }
 }
+
+

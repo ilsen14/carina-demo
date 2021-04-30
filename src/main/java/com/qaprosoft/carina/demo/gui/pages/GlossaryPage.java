@@ -52,7 +52,7 @@ public class GlossaryPage extends AbstractPage {
             List<String> sortedString = glossaryItem.getTitles().stream()
                     .sorted()
                     .collect(Collectors.toList());
-            LOGGER.info(sortedString);
+            LOGGER.info("Are in alhpabetic order:" + sortedString);
             if (sortedString.equals(glossaryItem.getTitles())) {
                 return false;
             }

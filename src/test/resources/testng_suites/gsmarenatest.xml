@@ -16,39 +16,6 @@
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
     <parameter name="jenkinsAutoScreenshot" value="true"/>
 
-    <test name="Iphone Search Test">
-        <parameter name="phoneSearch" value="iPhone"/>
-        <classes>
-            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
-                <methods>
-                    <include name="verifyPhoneSearch"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="LG Search Test">
-        <parameter name="phoneSearch" value="LG"/>
-        <classes>
-            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
-                <methods>
-                    <include name="verifyPhoneSearch"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="NoKia search Test">
-        <parameter name="phoneSearch" value="NOKIA"/>
-        <classes>
-            <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
-                <methods>
-                    <include name="verifyPhoneSearch"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
     <test name="GSM arena web tests">
         <classes>
             <class name="com.qaprosoft.carina.demo.GSMArenaTest" >
@@ -60,6 +27,7 @@
                     <include name="compareArticleTitles"/>
                     <include name="testVerifyGlossaryFirstLetterInTitle"/>
                     <include name="testVerifyGlossaryTextByAlphabets"/>
+                    <include name="verifyHamburgerPageOpening"/>
                 </methods>
             </class>
         </classes>

@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -10,20 +11,30 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
 import com.qaprosoft.carina.demo.services.LoginService;
+import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.services.User;
 import com.qaprosoft.carina.demo.services.UserService;
-import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
+import com.qaprosoft.carina.demo.gui.pages.ContactPage;
+import com.qaprosoft.carina.demo.gui.pages.CoveragePage;
+import com.qaprosoft.carina.demo.gui.pages.DealsPage;
+import com.qaprosoft.carina.demo.gui.pages.FeaturedPage;
+import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
+import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.pages.PhoneFinderPage;
+import com.qaprosoft.carina.demo.gui.pages.ReviewsPage;
+import com.qaprosoft.carina.demo.gui.pages.ToolsPage;
+import com.qaprosoft.carina.demo.gui.pages.VideosPage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 
 public class GSMArenaTest extends AbstractTest{
@@ -117,6 +128,24 @@ public class GSMArenaTest extends AbstractTest{
         }
     }
 
+    @Test(dataProvider = "DataProvider")
+    @MethodOwner(owner = "ilsen")
+    @XlsDataSourceParameters(path = "xls/phoneSearch.xlsx", sheet = "phoneSheet", dsUid = "TUID")
+    public void verifyPhoneSearchUsingXLS(HashMap<String, String> device) {
+        final String phone = device.get("brand");
+        UserService userService = new UserService();
+        User user = userService.getUser();
+        LoginService loginService = new LoginService();
+        loginService.login(user.getEmail(), user.getPassword());
+        HomePage homePage = new HomePage(getDriver());
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        List<NewsItem> news = newsPage.searchNews(phone);
+        Assert.assertFalse(CollectionUtils.isEmpty(news), "Failed search");
+        for (NewsItem searchList : news) {
+            Assert.assertTrue(StringUtils.containsIgnoreCase(searchList.getNewsItemTitle(), phone), "Invalid search results!");
+        }
+    }
+
     @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "ilsen")
     @TestLabel(name = "feature", value = { "web", "regression" })
@@ -139,5 +168,32 @@ public class GSMArenaTest extends AbstractTest{
         Assert.assertTrue(glossaryPage.isPageOpened(), "Glossary Page isn't opened");
         Assert.assertTrue(glossaryPage.verifyHeaderAndTextEquality(), "Header and text items don't match");
         Assert.assertTrue(glossaryPage.verifyAlphabeticalOrder(glossaryPage.glossaryItem));
+    }
+
+    @Test
+    @MethodOwner(owner = "ilsen")
+    public void verifyHamburgerPageOpening() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "HomePage is not opened!");
+        HamburgerMenu hamburgerMenu = homePage.getTopMenu().openHamburgerMenu();
+        ContactPage contactPage = hamburgerMenu.openContactPage();
+        Assert.assertTrue(contactPage.isPageOpened(), "Contact Page is not opened");
+        CoveragePage coveragePage = hamburgerMenu.openCoveragePage();
+        Assert.assertTrue(coveragePage.isPageOpened(), "Coverage Page is not opened");
+        DealsPage dealsPage = hamburgerMenu.openDealsPage();
+        Assert.assertTrue(dealsPage.isPageOpened(), "Deals Page is not opened");
+        FeaturedPage featuredPage = hamburgerMenu.openFeaturedPage();
+        Assert.assertTrue(featuredPage.isPageOpened(), "Featured Page is not opened");
+        NewsPage newsPage = hamburgerMenu.openNewsPage();
+        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened");
+        PhoneFinderPage phoneFinderPage = hamburgerMenu.openPhoneFinderPage();
+        Assert.assertTrue(phoneFinderPage.isPageOpened(), "Phone Finder page is not opened");
+        ReviewsPage reviewsPage = hamburgerMenu.openReviewsPage();
+        Assert.assertTrue(reviewsPage.isPageOpened(), "Review Page is not opened!");
+        ToolsPage toolsPage = hamburgerMenu.openToolsPage();
+        Assert.assertTrue(toolsPage.isPageOpened(), "Tools Page is not opened");
+        VideosPage videosPage = hamburgerMenu.openVideosPage();
+        Assert.assertTrue(videosPage.isPageOpened(), "Vidoes page is not opened");
     }
 }
