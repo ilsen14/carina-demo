@@ -18,8 +18,6 @@ package com.qaprosoft.carina.demo.gui.pages;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
-import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -30,6 +28,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
@@ -43,9 +42,6 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "header")
     private TopMenu topMenu;
 
-    @FindBy(xpath = "//*[@class='lines-button minus']")
-    private HamburgerMenu hamburgerMenu;
-
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
 
@@ -57,9 +53,6 @@ public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//*[contains(text(), 'Wrong password.')]")
     private ExtendedWebElement wrongPassword;
-
-    @FindBy(xpath = "//*[@class='lines-button minus']")
-    private ExtendedWebElement pressHamburgerButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -99,10 +92,6 @@ public class HomePage extends AbstractPage {
     public boolean isWrongPasswordTextPresent() {
         return wrongPassword.isPresent();
     }
-
-    public HamburgerMenu getHamburgerMenu(){
-        hamburgerMenu.click();
-        return hamburgerMenu;
-    }
 }
+
 
