@@ -17,12 +17,9 @@ import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.consant.ProjectConstants;
 import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
-import com.qaprosoft.carina.demo.services.LoginService;
 import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
-import com.qaprosoft.carina.demo.services.User;
-import com.qaprosoft.carina.demo.services.UserService;
 import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
 import com.qaprosoft.carina.demo.gui.pages.ContactPage;
 import com.qaprosoft.carina.demo.gui.pages.CoveragePage;
@@ -31,10 +28,14 @@ import com.qaprosoft.carina.demo.gui.pages.FeaturedPage;
 import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
-import com.qaprosoft.carina.demo.gui.pages.PhoneFinderPage;
+import com.qaprosoft.carina.demo.gui.pages.PhoneSearchResultPage;
 import com.qaprosoft.carina.demo.gui.pages.ReviewsPage;
+import com.qaprosoft.carina.demo.gui.pages.SearchPage;
 import com.qaprosoft.carina.demo.gui.pages.ToolsPage;
 import com.qaprosoft.carina.demo.gui.pages.VideosPage;
+import com.qaprosoft.carina.demo.services.LoginService;
+import com.qaprosoft.carina.demo.services.User;
+import com.qaprosoft.carina.demo.services.UserService;
 import com.zebrunner.agent.core.annotation.TestLabel;
 
 public class GSMArenaTest extends AbstractTest{
@@ -187,7 +188,7 @@ public class GSMArenaTest extends AbstractTest{
         Assert.assertTrue(featuredPage.isPageOpened(), "Featured Page is not opened");
         NewsPage newsPage = hamburgerMenu.openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened");
-        PhoneFinderPage phoneFinderPage = hamburgerMenu.openPhoneFinderPage();
+        SearchPage phoneFinderPage = hamburgerMenu.openPhoneFinderPage();
         Assert.assertTrue(phoneFinderPage.isPageOpened(), "Phone Finder page is not opened");
         ReviewsPage reviewsPage = hamburgerMenu.openReviewsPage();
         Assert.assertTrue(reviewsPage.isPageOpened(), "Review Page is not opened!");
@@ -195,5 +196,37 @@ public class GSMArenaTest extends AbstractTest{
         Assert.assertTrue(toolsPage.isPageOpened(), "Tools Page is not opened");
         VideosPage videosPage = hamburgerMenu.openVideosPage();
         Assert.assertTrue(videosPage.isPageOpened(), "Vidoes page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "ilsen")
+    public void verifyXiaomiSearch(){
+        final String phone = "Xiaomi";
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(),"Home page is not opened!");
+        HamburgerMenu hamburgerMenu = homePage.getTopMenu().openHamburgerMenu();
+        Assert.assertTrue(hamburgerMenu.verifyPhoneSearchButtonPresence(),"Phone Search button is not absent");
+        SearchPage searchPage = hamburgerMenu.openPhoneFinderPage();
+        Assert.assertTrue(searchPage.isPageOpened(), "Page is not opened");
+        searchPage.selectBrand(phone);
+        Assert.assertTrue(searchPage.isSearchButtonPresent(), "Search button is absent");
+        String titleSearchResult = searchPage.getSearchResultText();
+        PhoneSearchResultPage resultPage = searchPage.pressSearch();
+        Assert.assertTrue(resultPage.isTextPresent(titleSearchResult));
+        Assert.assertTrue(resultPage.verifySearchByCurrentBrand(phone));
+        Assert.assertTrue(resultPage.isBtnClickHerePresent(),"Click here button is missing");
+        searchPage = resultPage.pressClickHereBtn();
+        Assert.assertTrue(searchPage.isPageOpened(), "Search Page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "ilsen")
+    public void verifyIphoneSearch(){
+        UserService userService = new UserService();
+        User user = userService.getUser();
+        LoginService loginService = new LoginService();
+        loginService.login(user.getEmail(), user.getPassword());
+        HomePage homePage = new HomePage(getDriver());
     }
 }
