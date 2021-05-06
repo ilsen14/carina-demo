@@ -3,6 +3,8 @@ package com.qaprosoft.carina.demo;
 import java.util.HashMap;
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.pages.OpinionPage;
+import com.qaprosoft.carina.demo.gui.pages.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Parameters;
@@ -20,19 +22,6 @@ import com.qaprosoft.carina.demo.gui.components.compare.LoginForm;
 import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
-import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
-import com.qaprosoft.carina.demo.gui.pages.ContactPage;
-import com.qaprosoft.carina.demo.gui.pages.CoveragePage;
-import com.qaprosoft.carina.demo.gui.pages.DealsPage;
-import com.qaprosoft.carina.demo.gui.pages.FeaturedPage;
-import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
-import com.qaprosoft.carina.demo.gui.pages.PhoneSearchResultPage;
-import com.qaprosoft.carina.demo.gui.pages.ReviewsPage;
-import com.qaprosoft.carina.demo.gui.pages.SearchPage;
-import com.qaprosoft.carina.demo.gui.pages.ToolsPage;
-import com.qaprosoft.carina.demo.gui.pages.VideosPage;
 import com.qaprosoft.carina.demo.services.LoginService;
 import com.qaprosoft.carina.demo.services.User;
 import com.qaprosoft.carina.demo.services.UserService;
@@ -228,5 +217,16 @@ public class GSMArenaTest extends AbstractTest{
         LoginService loginService = new LoginService();
         loginService.login(user.getEmail(), user.getPassword());
         HomePage homePage = new HomePage(getDriver());
+        BrandModelsPage brandModelsPage = homePage.getPhoneFinderMenu().openModelSearch("Apple");
+        brandModelsPage.pressPopularityButton();
+        ModelInfoPage modelInfoPage = brandModelsPage.selectFirstModel(0);
+        OpinionPage opinionPage = modelInfoPage.openOpinionPage();
+        opinionPage.selectBestRating();
+        opinionPage.verifyIfCommentsSortedByRating();
+        opinionPage.selectNewestItems();
+        Assert.assertTrue(opinionPage.verifyCommentsAreSortedByDate(),"Comments are not sorted by date");
+        Assert.assertTrue(opinionPage.verifyRatingButtonUnclicked(0), "Rating has been not decreased");
+        Assert.assertTrue(opinionPage.verifyRatingButtonIsClicked(0),"Rating has been not raised");
+
     }
 }

@@ -34,6 +34,9 @@ public class ModelInfoPage extends AbstractPage {
     @FindBy(css = ".help-battery strong")
     private ExtendedWebElement batteryInfoLabel;
 
+    @FindBy(xpath = "//a[@href='apple_iphone_12_pro_max-reviews-10237.php']")
+    private ExtendedWebElement opinionPage;
+
     public ModelInfoPage(WebDriver driver) {
         super(driver);
     }
@@ -56,5 +59,10 @@ public class ModelInfoPage extends AbstractPage {
     public String readBattery() {
         assertElementPresent(displayInfoLabel);
         return batteryInfoLabel.getText();
+    }
+
+    public OpinionPage openOpinionPage(){
+        opinionPage.click();
+        return new OpinionPage(driver);
     }
 }
