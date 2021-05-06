@@ -18,7 +18,6 @@ package com.qaprosoft.carina.demo.gui.pages;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.components.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -28,7 +27,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-
+import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.PhoneFinderMenu;
+import com.qaprosoft.carina.demo.gui.components.TopMenu;
+import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
 public class HomePage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

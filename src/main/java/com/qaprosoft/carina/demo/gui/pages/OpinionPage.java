@@ -2,19 +2,16 @@ package com.qaprosoft.carina.demo.gui.pages;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Date;
+import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.components.ReviewItem;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 
 public class OpinionPage extends AbstractPage {
 
@@ -41,9 +38,6 @@ public class OpinionPage extends AbstractPage {
 
     @FindBy(xpath = "//li[@class='upost']/time")
     private List<ExtendedWebElement> postDate;
-
-    @FindBy(xpath = "//span[@class='thumbs-score']")
-    private List<ReviewItem> thumbsScore1;
 
     public OpinionPage(WebDriver driver) {
         super(driver);
