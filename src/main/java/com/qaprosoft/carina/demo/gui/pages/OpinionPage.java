@@ -61,6 +61,7 @@ public class OpinionPage extends AbstractPage {
             for (int i = 0; i < thumbsScore.size() - 1; i++) {
                 int previousRating = Integer.parseInt(thumbsScore.get(i).getText());
                 int nextRating = Integer.parseInt(thumbsScore.get(i + 1).getText());
+                LOGGER.info(previousRating + ">=" + nextRating );
                 if (!(previousRating >= nextRating)) {
                     return false;
                 }
