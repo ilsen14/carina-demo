@@ -30,7 +30,7 @@ public class BrandModelsPage extends AbstractPage {
         throw new RuntimeException("Unable to open model: " + modelName);
     }
 
-    public ModelInfoPage selectFirstModel (int index){
+    public ModelInfoPage selectModel(int index){
         models.get(index).openModelPage();
         return new ModelInfoPage(driver);
     }

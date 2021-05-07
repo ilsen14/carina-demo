@@ -234,14 +234,13 @@ public class GSMArenaTest extends AbstractTest{
         HomePage homePage = new HomePage(getDriver());
         BrandModelsPage brandModelsPage = homePage.getPhoneFinderMenu().openModelSearch("Apple");
         brandModelsPage.pressPopularityButton();
-        ModelInfoPage modelInfoPage = brandModelsPage.selectFirstModel(0);
+        ModelInfoPage modelInfoPage = brandModelsPage.selectModel(0);
         OpinionPage opinionPage = modelInfoPage.openOpinionPage();
         opinionPage.selectBestRating();
-        opinionPage.verifyIfCommentsSortedByRating();
+        Assert.assertTrue(opinionPage.verifyCommentsSortedByRating(),"Coments are not sorted by rate");;
         opinionPage.selectNewestItems();
         Assert.assertTrue(opinionPage.verifyCommentsAreSortedByDate(),"Comments are not sorted by date");
         Assert.assertTrue(opinionPage.verifyRatingButtonUnclicked(0), "Rating has been not decreased");
         Assert.assertTrue(opinionPage.verifyRatingButtonIsClicked(0),"Rating has been not raised");
-
     }
 }

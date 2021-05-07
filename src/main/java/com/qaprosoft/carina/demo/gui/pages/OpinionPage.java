@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.testng.asserts.SoftAssert;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -43,8 +42,6 @@ public class OpinionPage extends AbstractPage {
         super(driver);
     }
 
-    SoftAssert softAssert = new SoftAssert();
-
     public void selectNewestItems() {
         LOGGER.info("Newest items selected");
         newestFirst.click();
@@ -59,27 +56,17 @@ public class OpinionPage extends AbstractPage {
         bestRating.click();
     }
 
-    public void rateUpComment(int index) {
-        voteUpLink.get(index).click();
-    }
-
-    public void rateDownComment(int index) {
-        voteDownLink.get(index).click();
-    }
-
-    public boolean verifyIfCommentsSortedByRating() {
+    public boolean verifyCommentsSortedByRating() {
         if (!thumbsScore.isEmpty()) {
             for (int i = 0; i < thumbsScore.size() - 1; i++) {
                 int previousRating = Integer.parseInt(thumbsScore.get(i).getText());
                 int nextRating = Integer.parseInt(thumbsScore.get(i + 1).getText());
-                System.out.println(previousRating + ">= " + nextRating);
-                if (previousRating < nextRating) {
+                if (!(previousRating >= nextRating)) {
                     return false;
                 }
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
     public boolean verifyCommentsAreSortedByDate() {
@@ -90,8 +77,8 @@ public class OpinionPage extends AbstractPage {
             Date date = null;
             Date date2 = null;
             try {
-                date = simpleDateFormat.parse(firstDate);
-                date2 = simpleDateFormat.parse(secondDate);
+               date = simpleDateFormat.parse(firstDate);
+               date2 = simpleDateFormat.parse(secondDate);
                 int result = date.compareTo(date2);
                 if (result == 1) {
                     return false;
@@ -106,11 +93,11 @@ public class OpinionPage extends AbstractPage {
 
     public boolean verifyRatingButtonIsClicked(int index) {
         int initialRating = Integer.parseInt(thumbsScore.get(index).getText());
-        voteUpLink.get(index).click();
         LOGGER.info("Increase rating button is clicked");
-        int secondRating = Integer.parseInt(thumbsScore.get(index).getText());
+        voteUpLink.get(index).click();
+        int ratingAfterClick = Integer.parseInt(thumbsScore.get(index).getText());
         if (!thumbsScore.isEmpty()) {
-            if (!(secondRating > initialRating)) {
+            if (!(ratingAfterClick == initialRating + 1)) {
                 return false;
             }
             return true;
@@ -120,11 +107,11 @@ public class OpinionPage extends AbstractPage {
 
     public boolean verifyRatingButtonUnclicked(int index) {
         int initialRating = Integer.parseInt(thumbsScore.get(index).getText());
-        voteDownLink.get(index).click();
         LOGGER.info("Unvote button has been clicked!");
-        int secondRating = Integer.parseInt(thumbsScore.get(index).getText());
+        voteDownLink.get(index).click();
+        int ratingAfterClick = Integer.parseInt(thumbsScore.get(index).getText());
         if (!thumbsScore.isEmpty()) {
-            if (!(initialRating > secondRating)) {
+            if (!(initialRating - ratingAfterClick == 1)) {
                 return false;
             }
             return true;
@@ -132,3 +119,4 @@ public class OpinionPage extends AbstractPage {
         return false;
     }
 }
+
