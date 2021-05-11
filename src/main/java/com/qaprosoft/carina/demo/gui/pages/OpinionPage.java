@@ -57,67 +57,73 @@ public class OpinionPage extends AbstractPage {
     }
 
     public boolean verifyCommentsSortedByRating() {
+        boolean globalVerifyStatus = true, currentVerifyStatus = true;
         if (!thumbsScore.isEmpty()) {
             for (int i = 0; i < thumbsScore.size() - 1; i++) {
                 int previousRating = Integer.parseInt(thumbsScore.get(i).getText());
                 int nextRating = Integer.parseInt(thumbsScore.get(i + 1).getText());
-                LOGGER.info(previousRating + ">=" + nextRating );
+                LOGGER.info(previousRating + " is compared to " + nextRating );
                 if (!(previousRating >= nextRating)) {
-                    return false;
+                   currentVerifyStatus = false;
                 }
+                globalVerifyStatus = currentVerifyStatus;
             }
         }
-        return true;
+         return globalVerifyStatus;
     }
 
-    public boolean verifyCommentsAreSortedByDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        for (int i = 0; i < postDate.size() - 1; i++) {
-            String firstDate = postDate.get(i).getText();
-            String secondDate = postDate.get(i + 1).getText();
-            Date date = null;
-            Date date2 = null;
+    public boolean verifyDateSort() {
+        boolean globalVerifyStatus = true ,firstVerifyStatus = true, secondVerifyStatus = true,
+                thirdVerifyStatus = true, value = false;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
+        for (int i =0; i < postDate.size()-1; i++){
             try {
-               date = simpleDateFormat.parse(firstDate);
-               date2 = simpleDateFormat.parse(secondDate);
-                int result = date.compareTo(date2);
-                if (result == 1) {
-                    return false;
+                Date firstDate = simpleDateFormat.parse(postDate.get(i).getText());
+                Date secondDate = simpleDateFormat.parse(postDate.get(i + 1).getText());
+                switch (firstDate.compareTo(secondDate)){
+                    case -1 : {firstVerifyStatus = false;}
+                    break;
+                    case 0 : {secondVerifyStatus = false;}
+                    break;
+                    case 1 : {thirdVerifyStatus = true;}
+                    break;
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            return true;
+            globalVerifyStatus = thirdVerifyStatus;
         }
-        return false;
+        return globalVerifyStatus;
     }
 
     public boolean verifyRatingButtonIsClicked(int index) {
+        boolean globalVerifyStatus = true, innerVerifyStatus = true;
         int initialRating = Integer.parseInt(thumbsScore.get(index).getText());
         LOGGER.info("Increase rating button is clicked");
         voteUpLink.get(index).click();
         int ratingAfterClick = Integer.parseInt(thumbsScore.get(index).getText());
         if (!thumbsScore.isEmpty()) {
             if (!(ratingAfterClick == initialRating + 1)) {
-                return false;
+                innerVerifyStatus = false;
             }
-            return true;
+            globalVerifyStatus = innerVerifyStatus;
         }
-        return false;
+        return globalVerifyStatus;
     }
 
     public boolean verifyRatingButtonUnclicked(int index) {
+        boolean globalVerifyStatus = true, innerVerifyStatus = true;
         int initialRating = Integer.parseInt(thumbsScore.get(index).getText());
-        LOGGER.info("Unvote button has been clicked!");
+        LOGGER.info("Vote down button has been clicked!");
         voteDownLink.get(index).click();
         int ratingAfterClick = Integer.parseInt(thumbsScore.get(index).getText());
         if (!thumbsScore.isEmpty()) {
             if (!(initialRating - ratingAfterClick == 1)) {
-                return false;
+                innerVerifyStatus = false;
             }
-            return true;
+            globalVerifyStatus = innerVerifyStatus;
         }
-        return false;
+        return globalVerifyStatus;
     }
 }
 

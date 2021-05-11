@@ -3,7 +3,6 @@ package com.qaprosoft.carina.demo;
 import java.util.HashMap;
 import java.util.List;
 
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Parameters;
@@ -237,10 +236,11 @@ public class GSMArenaTest extends AbstractTest{
         ModelInfoPage modelInfoPage = brandModelsPage.selectModel(0);
         OpinionPage opinionPage = modelInfoPage.openOpinionPage();
         opinionPage.selectBestRating();
-        Assert.assertTrue(opinionPage.verifyCommentsSortedByRating(),"Coments are not sorted by rate");;
+        Assert.assertTrue(opinionPage.verifyCommentsSortedByRating(),"Coments are not sorted by rate");
         opinionPage.selectNewestItems();
-        Assert.assertTrue(opinionPage.verifyCommentsAreSortedByDate(),"Comments are not sorted by date");
-        Assert.assertTrue(opinionPage.verifyRatingButtonUnclicked(0), "Rating has been not decreased");
+        Assert.assertTrue(opinionPage.verifyDateSort(), "Cooments are not sorted by date");
         Assert.assertTrue(opinionPage.verifyRatingButtonIsClicked(0),"Rating has been not raised");
+        Assert.assertTrue(opinionPage.verifyRatingButtonUnclicked(0), "Rating has been not decreased");
+
     }
 }

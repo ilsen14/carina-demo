@@ -28,12 +28,11 @@
                     <include name="testVerifyGlossaryFirstLetterInTitle"/>
                     <include name="testVerifyGlossaryTextByAlphabets"/>
                     <include name="verifyHamburgerPageOpening"/>
-                    <include name="verifyIphoneSearch"/>
                     <include name="verifyXiaomiSearch"/>
+                    <include name="verifyIphoneSearch"/>
                 </methods>
             </class>
         </classes>
     </test>
 
 </suite>
-
