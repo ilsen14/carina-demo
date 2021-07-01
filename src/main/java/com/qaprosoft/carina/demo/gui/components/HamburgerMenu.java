@@ -6,7 +6,16 @@ import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.pages.*;
+import com.qaprosoft.carina.demo.gui.pages.ContactPage;
+import com.qaprosoft.carina.demo.gui.pages.CoveragePage;
+import com.qaprosoft.carina.demo.gui.pages.DealsPage;
+import com.qaprosoft.carina.demo.gui.pages.FeaturedPage;
+import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.pages.ReviewsPage;
+import com.qaprosoft.carina.demo.gui.pages.SearchPage;
+import com.qaprosoft.carina.demo.gui.pages.ToolsPage;
+import com.qaprosoft.carina.demo.gui.pages.VideosPage;
 
 public class HamburgerMenu extends AbstractUIObject {
 
@@ -39,7 +48,6 @@ public class HamburgerMenu extends AbstractUIObject {
 
     @FindBy(xpath = "//a[contains(text(),'Contact')][1]")
     private ExtendedWebElement contactLink;
-
 
     public HamburgerMenu(WebDriver driver) {
         super(driver);
@@ -79,9 +87,9 @@ public class HamburgerMenu extends AbstractUIObject {
         return new NewsPage(driver);
     }
 
-    public PhoneFinderPage openPhoneFinderPage(){
+    public SearchPage openPhoneFinderPage(){
         phoneFinderLink.click();
-        return new PhoneFinderPage(driver);
+        return new SearchPage(driver);
     }
 
     public ReviewsPage openReviewsPage(){
@@ -97,6 +105,10 @@ public class HamburgerMenu extends AbstractUIObject {
     public VideosPage openVideosPage(){
         videosLink.click();
         return new VideosPage(driver);
+    }
+
+    public boolean verifyPhoneSearchButtonPresence(){
+        return phoneFinderLink.isPresent();
     }
 
     public void click() {

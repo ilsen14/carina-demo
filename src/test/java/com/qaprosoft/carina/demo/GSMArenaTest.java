@@ -21,13 +21,16 @@ import com.qaprosoft.carina.demo.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.TopMenu;
 import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
-import com.qaprosoft.carina.demo.gui.pages.ContactPage;
+import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.CoveragePage;
+import com.qaprosoft.carina.demo.gui.pages.ContactPage;
 import com.qaprosoft.carina.demo.gui.pages.DealsPage;
 import com.qaprosoft.carina.demo.gui.pages.FeaturedPage;
 import com.qaprosoft.carina.demo.gui.pages.GlossaryPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.pages.OpinionPage;
 import com.qaprosoft.carina.demo.gui.pages.PhoneSearchResultPage;
 import com.qaprosoft.carina.demo.gui.pages.ReviewsPage;
 import com.qaprosoft.carina.demo.gui.pages.SearchPage;
@@ -228,5 +231,16 @@ public class GSMArenaTest extends AbstractTest{
         LoginService loginService = new LoginService();
         loginService.login(user.getEmail(), user.getPassword());
         HomePage homePage = new HomePage(getDriver());
+        BrandModelsPage brandModelsPage = homePage.getPhoneFinderMenu().openModelSearch("Apple");
+        brandModelsPage.pressPopularityButton();
+        ModelInfoPage modelInfoPage = brandModelsPage.selectModel(0);
+        OpinionPage opinionPage = modelInfoPage.openOpinionPage();
+        opinionPage.selectBestRating();
+        Assert.assertTrue(opinionPage.verifyCommentsSortedByRating(),"Coments are not sorted by rate");
+        opinionPage.selectNewestItems();
+        Assert.assertTrue(opinionPage.verifyDateSort(), "Cooments are not sorted by date");
+        Assert.assertTrue(opinionPage.verifyRatingButtonIsClicked(0),"Rating has been not raised");
+        Assert.assertTrue(opinionPage.verifyRatingButtonUnclicked(0), "Rating has been not decreased");
+
     }
 }

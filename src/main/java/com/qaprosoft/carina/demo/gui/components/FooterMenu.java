@@ -47,6 +47,5 @@ public class FooterMenu extends AbstractUIObject {
         glossaryLink.click();
         return new GlossaryPage(driver);
     }
-
 }
 
